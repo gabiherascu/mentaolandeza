@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mentaolandeza – Legume și plante aromatice de la fermă</title>
+<meta name="description" content="Legume și plante aromatice cultivate natural, culese dimineața și livrate proaspete. Fermă locală Mentaolandeza.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{bg:'var(--bg)',surf:'var(--surf)',ink:'var(--ink)',mute:'var(--mute)',brand:'var(--brand)',deep:'#0d2b1c',lime:'#c4e85a',soil:'#4a3426',line:'var(--line)'},
+fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtree','system-ui','sans-serif']}}}};
+</script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="font-body antialiased">
+
+<!-- ============ HEADER ============ -->
+<header id="nav" class="fixed inset-x-0 z-50">
+  <div class="mx-auto max-w-7xl px-5 h-16 flex items-center justify-between text-white">
+    <a href="#acasa" class="flex items-center gap-2 font-head font-extrabold text-xl" aria-label="Mentaolandeza – acasă">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><path d="M16 29V13" stroke="#c4e85a" stroke-width="2.5" stroke-linecap="round"/><path d="M16 15C6 15 4 8 4 4c8 0 12 3 12 11Z" fill="#c4e85a"/><path d="M16 20c8 0 12-3 12-9-7 0-12 2-12 9Z" fill="#5cc891"/></svg>
+      Mentaolandeza
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Principal">
+      <a class="nl" href="#despre">Despre noi</a><a class="nl" href="#recolta">Recolta</a><a class="nl" href="#galerie">Galerie</a><a class="nl" href="#recenzii">Recenzii</a>
+      <a href="#contact" class="btn btn-lime !py-2 !px-5">Comandă acum</a>
+    </nav>
+    <button id="burger" class="md:hidden p-2" aria-label="Meniu" aria-expanded="false"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h18M4 13h18M4 18h18"/></svg></button>
+  </div>
+  <div id="mob" class="hidden md:hidden bg-deep text-white px-5 pb-5 flex flex-col gap-4 font-medium">
+    <a href="#despre">Despre noi</a><a href="#recolta">Recolta</a><a href="#galerie">Galerie</a><a href="#recenzii">Recenzii</a><a href="#contact" class="btn btn-lime justify-center">Comandă acum</a>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="acasa" class="hero relative min-h-[100svh] flex items-center overflow-hidden text-white">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true" id="heroPlants"></div>
+  <div class="relative mx-auto max-w-7xl px-5 pt-28 pb-20 w-full">
+    <p class="rise inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm backdrop-blur" style="animation-delay:.1s">Cultivat natural, fără chimicale</p>
+    <h1 class="rise mt-6 max-w-3xl text-5xl sm:text-6xl lg:text-8xl font-extrabold leading-[.95]" style="animation-delay:.25s">De pe câmp direct pe masa ta, în aceeași zi.</h1>
+    <p class="rise mt-6 max-w-xl text-lg text-white/80" style="animation-delay:.4s">Legume și plante aromatice crescute cu răbdare, culese de mână dimineața și livrate proaspete, cu gust adevărat.</p>
+    <div class="rise mt-9 flex flex-wrap gap-3" style="animation-delay:.55s">
+      <a href="#contact" class="btn btn-lime">Comandă acum</a>
+      <a href="#galerie" class="btn btn-ghost">Vezi galeria și recolta</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESPRE ============ -->
+<section id="despre" class="mx-auto max-w-7xl px-5 py-24">
+  <div class="rv max-w-2xl">
+    <h2 class="text-4xl md:text-5xl font-extrabold">O fermă mică, cu grijă mare pentru fiecare plantă</h2>
+    <p class="mt-4 text-mute text-lg">La Mentaolandeza cultivăm legume și plante aromatice pe pământ îngrijit, fără pesticide sintetice. Ce vezi în ladă a fost culeasă de mână, nu stocată luni la rând.</p>
+  </div>
+  <div class="mt-12 grid gap-4 md:grid-cols-6 md:grid-rows-2">
+    <div class="rv md:col-span-3 md:row-span-2 rounded-3xl bg-deep text-white p-8 relative overflow-hidden min-h-[340px] flex flex-col justify-end">
+      <div class="absolute -right-10 -top-6 w-72 opacity-90 float" id="aboutArt" aria-hidden="true"></div>
+      <h3 class="text-3xl font-bold">Povestea noastră</h3>
+      <p class="mt-3 text-white/75 max-w-md">Am început cu un rând de busuioc și o seră improvizată. Azi avem zeci de soiuri, dar regula a rămas aceeași: cultivăm doar ce am mânca și noi acasă.</p>
+    </div>
+    <div class="rv md:col-span-3 card p-7 flex items-center gap-5"><div class="text-5xl font-head font-extrabold text-brand">100%</div><p class="text-mute">naturale, crescute pe sol viu, cu compost propriu.</p></div>
+    <div class="rv md:col-span-1 card p-6"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round"><path d="M12 3c4 4 6 7 6 10a6 6 0 0 1-12 0c0-3 2-6 6-10Z"/></svg><p class="mt-3 font-semibold">Fără chimicale</p></div>
+    <div class="rv md:col-span-2 card p-6"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><p class="mt-3 font-semibold">Culese dimineața, livrate în aceeași zi</p></div>
+  </div>
+  <div class="rv mt-4 grid grid-cols-3 gap-4 text-center">
+    <div class="card py-6"><b class="font-head text-4xl text-brand">30+</b><p class="text-mute text-sm">soiuri alese</p></div>
+    <div class="card py-6"><b class="font-head text-4xl text-brand">0</b><p class="text-mute text-sm">pesticide sintetice</p></div>
+    <div class="card py-6"><b class="font-head text-4xl text-brand">24h</b><p class="text-mute text-sm">de la cules la client</p></div>
+  </div>
+</section>
+
+<!-- ============ PRODUSE ============ -->
+<section id="recolta" class="bg-surf border-y border-line">
+  <div class="mx-auto max-w-7xl px-5 py-24">
+    <div class="rv flex flex-wrap items-end justify-between gap-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold max-w-xl">Recolta noastră</h2>
+      <div class="flex flex-wrap gap-2" id="filters" role="group" aria-label="Filtrează produse"></div>
+    </div>
+    <div class="mt-8 flex items-center justify-between gap-3"><p class="text-mute text-sm">Trage rândul în lateral și apasă pe „Detalii” pentru mai multe.</p><div class="flex gap-2"><button class="arw" id="pp" aria-label="Înapoi">‹</button><button class="arw" id="pn" aria-label="Înainte">›</button></div></div>
+    <div id="grid" class="mas mt-4" tabindex="0" aria-label="Produse, derulează lateral"></div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section id="galerie" class="mx-auto max-w-7xl px-5 py-24">
+  <div class="rv max-w-2xl"><h2 class="text-4xl md:text-5xl font-extrabold">Galeria fermei</h2>
+  <p class="mt-4 text-mute text-lg">Trage galeria în lateral sau folosește săgețile. Apasă pe o imagine pentru ecran complet.</p></div>
+  <div class="mt-8 flex justify-end gap-2"><button class="arw" id="gp" aria-label="Înapoi">‹</button><button class="arw" id="gn" aria-label="Înainte">›</button></div>
+  <div id="mas" class="mas mt-4" tabindex="0" aria-label="Galerie, derulează lateral"></div>
+</section>
+
+<!-- ============ RECENZII ============ -->
+<section id="recenzii" class="bg-deep text-white py-24">
+  <div class="mx-auto max-w-4xl px-5 text-center">
+    <h2 class="rv text-4xl md:text-5xl font-extrabold">De ce ne aleg clienții</h2>
+    <div class="relative mt-12 min-h-[230px]" id="rev" aria-live="polite"></div>
+    <div class="mt-6 flex justify-center gap-2" id="dots"></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="mx-auto max-w-7xl px-5 py-24 grid gap-12 lg:grid-cols-2">
+  <div class="rv">
+    <h2 class="text-4xl md:text-5xl font-extrabold">Spune-ne ce îți trebuie</h2>
+    <p class="mt-4 text-mute text-lg">Scrie-ne ce legume sau plante vrei și când. Revenim cu disponibilitatea și prețul.</p>
+    <ul class="mt-8 space-y-3 text-mute">
+      <li><b class="text-ink">Telefon / WhatsApp:</b> <a class="underline" href="tel:+40721481820">+40 721 481 820</a></li>
+      <li><b class="text-ink">Adresă:</b> Strada Odăi nr. 120, județul Ilfov</li>
+      <li><b class="text-ink">Email:</b> <a class="underline" href="mailto:mentaolandeza2026@gmail.com">mentaolandeza2026@gmail.com</a></li>
+      <li><b class="text-ink">Program:</b> zilnic, 07:00 – 19:00</li>
+    </ul>
+    <div class="mt-8 rounded-3xl overflow-hidden border border-line" aria-label="Hartă stilizată">
+      <svg viewBox="0 0 400 200" class="w-full block" role="img" aria-label="Hartă stilizată a fermei"><rect width="400" height="200" fill="#dbe8cf"/><path d="M0 140C80 110 120 170 220 130S340 90 400 110V200H0Z" fill="#bcd6a6"/><path d="M-10 60C100 40 160 90 260 60S360 20 410 40" stroke="#fff" stroke-width="10" fill="none"/><path d="M90 0 140 200" stroke="#fff" stroke-width="6"/><path d="M200 112c-12-16-24-26-24-40a24 24 0 0 1 48 0c0 14-12 24-24 40Z" fill="#1c7449"/><circle cx="200" cy="72" r="9" fill="#c4e85a"/></svg>
+    </div>
+    <div class="mt-6 flex gap-3" id="social"></div>
+  </div>
+  <form id="f" class="rv card p-7 space-y-5" novalidate>
+    <div><label for="n" class="font-semibold">Nume</label><input id="n" name="n" class="fld mt-1.5" autocomplete="name" placeholder="Ex: Maria Popescu"><p class="err" data-for="n"></p></div>
+    <div><label for="e" class="font-semibold">Email</label><input id="e" name="e" type="email" class="fld mt-1.5" autocomplete="email" placeholder="nume@exemplu.ro"><p class="err" data-for="e"></p></div>
+    <div><label for="m" class="font-semibold">Mesaj</label><textarea id="m" name="m" rows="5" class="fld mt-1.5" placeholder="Ce produse dorești și în ce cantitate?"></textarea><p class="err" data-for="m"></p></div>
+    <button id="sb" class="btn btn-lime w-full justify-center" type="submit"><span id="sbt">Trimite mesajul</span></button>
+    <p id="ok" class="hidden rounded-2xl bg-brand/10 p-4 font-semibold" style="color:var(--brand);background:rgba(92,200,145,.15)" role="status">Mesaj trimis. Îți răspundem în cel mult 24 de ore.</p>
+  </form>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-deep text-white/80">
+  <div class="mx-auto max-w-7xl px-5 py-14 grid gap-10 md:grid-cols-4">
+    <div class="md:col-span-2"><p class="font-head text-2xl font-extrabold text-white">Mentaolandeza</p><p class="mt-3 max-w-sm">Legume și plante aromatice crescute natural, cu grijă și răbdare.</p></div>
+    <div><p class="font-semibold text-white">Linkuri rapide</p><ul class="mt-3 space-y-2"><li><a class="nl" href="#despre">Despre noi</a></li><li><a class="nl" href="#recolta">Recolta</a></li><li><a class="nl" href="#galerie">Galerie</a></li></ul></div>
+    <div><p class="font-semibold text-white">Contact</p><ul class="mt-3 space-y-2"><li><a class="nl" href="mailto:mentaolandeza2026@gmail.com">mentaolandeza2026@gmail.com</a></li><li><a class="nl" href="tel:+40721481820">+40 721 481 820</a></li><li>Strada Odăi nr. 120, Ilfov</li></ul></div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-sm">© <span id="yr"></span> Mentaolandeza. Toate drepturile rezervate.</div>
+</footer>
+
+<button id="top" class="fixed right-5 bottom-5 z-40 size-12 rounded-full bg-lime text-deep grid place-items-center shadow-lg opacity-0 pointer-events-none transition" style="bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))" aria-label="Înapoi sus"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<!-- Detalii produs -->
+<div id="det" class="fixed inset-0 z-[65] hidden overflow-y-auto bg-bg" role="dialog" aria-modal="true" aria-label="Detalii produs" style="padding-top:env(safe-area-inset-top,0px)">
+  <div class="mx-auto max-w-5xl px-5 py-6"><button id="dx" class="chip">‹ Înapoi la recoltă</button><div id="dbody" class="mt-6 pb-10"></div></div>
+</div>
+<!-- Lightbox -->
+<div id="lb" class="fixed inset-0 z-[70] hidden items-center justify-center" role="dialog" aria-modal="true" aria-label="Galerie imagini">
+  <button id="lc" class="absolute top-4 right-4 text-white text-3xl w-12 h-12" aria-label="Închide">×</button>
+  <button id="lp" class="absolute left-3 text-white text-4xl w-12 h-12" aria-label="Anterioara">‹</button>
+  <figure class="w-[min(92vw,720px)]"><div id="lbi" class="rounded-3xl overflow-hidden aspect-square"></div><figcaption id="lbc" class="mt-4 text-center text-white font-semibold"></figcaption></figure>
+  <button id="ln" class="absolute right-3 text-white text-4xl w-12 h-12" aria-label="Următoarea">›</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
