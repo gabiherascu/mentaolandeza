@@ -43,4 +43,3 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .fld.bad{border-color:#e5484d}.fld.ok{border-color:#2fa56a}
 .err{color:#e5484d;font-size:.85rem;min-height:1.2rem;margin-top:.25rem}
 .spin{width:18px;height:18px;border:3px solid rgba(13,43,28,.3);border-top-color:#0d2b1c;border-radius:50%;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
- 

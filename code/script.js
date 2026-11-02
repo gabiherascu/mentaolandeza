@@ -132,8 +132,8 @@ function check(id){const el=document.getElementById(id),msg=rules[id](el.value);
 ['n','e','m'].forEach(id=>document.getElementById(id).addEventListener('input',()=>check(id)));
 f.addEventListener('submit',ev=>{ev.preventDefault();const okAll=['n','e','m'].map(check).every(Boolean);if(!okAll)return;
  const sb=document.getElementById('sb'),t=document.getElementById('sbt');sb.disabled=true;t.innerHTML='<span class="spin"></span>';
- /* Simulare trimitere. Pentru producție conectează la Formspree, Netlify Forms sau un endpoint propriu. */
- setTimeout(()=>{t.textContent='Trimis';document.getElementById('ok').classList.remove('hidden');f.reset();f.querySelectorAll('.fld').forEach(x=>x.classList.remove('ok'));setTimeout(()=>{sb.disabled=false;t.textContent='Trimite mesajul'},2500)},1200)});
+ const v={n:document.getElementById('n').value,e:document.getElementById('e').value,m:document.getElementById('m').value};const done=()=>{t.textContent='Trimis';document.getElementById('ok').classList.remove('hidden');f.reset();f.querySelectorAll('.fld').forEach(x=>x.classList.remove('ok'));setTimeout(()=>{sb.disabled=false;t.textContent='Trimite mesajul'},2500)};const fallback=()=>{location.href='mailto:mentaolandeza2026@gmail.com?subject='+encodeURIComponent('Mesaj de la '+v.n)+'&body='+encodeURIComponent(v.m+'\n\nNume: '+v.n+'\nEmail: '+v.e);t.textContent='Deschid emailul...';setTimeout(()=>{sb.disabled=false;t.textContent='Trimite mesajul'},2500)};
+ fetch('https://formsubmit.co/ajax/mentaolandeza2026@gmail.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({name:v.n,email:v.e,message:v.m,_subject:'Mesaj nou de pe site-ul Mentaolandeza',_captcha:'false'})}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(j=>{if(j.success==='false'||j.success===false)throw 0;done()}).catch(fallback)});
  
 /* ---------- Nav, scroll, reveal, back-to-top ---------- */
 const nav=document.getElementById('nav'),topBtn=document.getElementById('top'),mob=document.getElementById('mob'),bg=document.getElementById('burger');
