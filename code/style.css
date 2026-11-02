@@ -43,3 +43,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .fld.bad{border-color:#e5484d}.fld.ok{border-color:#2fa56a}
 .err{color:#e5484d;font-size:.85rem;min-height:1.2rem;margin-top:.25rem}
 .spin{width:18px;height:18px;border:3px solid rgba(13,43,28,.3);border-top-color:#0d2b1c;border-radius:50%;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+.gi img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s}.gi:hover img{transform:scale(1.08)}
+.card .ph img{transition:transform .6s}.card:hover .ph img{transform:scale(1.12)}
+details.fq{border:1px solid var(--line);border-radius:1rem;background:var(--surf);padding:1rem 1.25rem}
+details.fq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+details.fq summary::-webkit-details-marker{display:none}
+details.fq summary::after{content:"+";font-size:1.4rem;line-height:1}details.fq[open] summary::after{content:"\2013"}
+details.fq p{margin-top:.75rem;color:var(--mute)}
+#cp{transition:transform .3s}#cp.open{transform:none}
+ 

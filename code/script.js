@@ -1,3 +1,20 @@
+/* ============ POZELE TALE ============
+   1) Pune pozele într-un folder "img" lângă index.html.
+   2) Scoate // din fața rândului și schimbă numele fișierului.
+   Dacă un produs nu are poză, se folosește ilustrația generată. */
+const IMG={
+ // 'Mentă':'img/menta.jpg',
+ // 'Roșii':'img/rosii.jpg',
+ // 'Busuioc':'img/busuioc.jpg',
+};
+/* Galeria: dacă pui poze aici, înlocuiesc ilustrațiile din galerie. */
+const FOTO=[
+ // {src:'img/poza1.jpg',t:'Serele dimineața'},
+ // {src:'img/poza2.jpg',t:'Recoltă proaspătă'},
+];
+/* ============ PREȚURI (exemple, schimbă-le): nume produs : [preț în lei, unitate] ============ */
+const PR={'Mentă':[5,'legătură'],'Rozmarin':[6,'legătură'],'Busuioc':[5,'legătură'],'Mărar':[4,'legătură'],'Pătrunjel':[4,'legătură'],'Cimbru':[6,'legătură'],'Kale':[8,'legătură'],'Roșii':[12,'kg'],'Castraveți':[8,'kg'],'Morcovi':[6,'kg'],'Ridichi':[4,'legătură'],'Ardei gras':[14,'kg'],'Cutia săptămânii':[80,'cutie'],'Ghiveci de aromatice':[20,'buc'],'Ceai de plante':[18,'pachet'],'Usturoi verde':[5,'legătură']};
+function priceTxt(n){return PR[n]?PR[n][0]+' lei / '+PR[n][1]:''}
 /* ---------- Date: produse (artă vectorială generată, fără imagini externe) ---------- */
 const P=[
  {n:'Mentă',c:'aromatice',s:'leaf',a:'#2f9e5b',b:'#d6f2b6',d:'Parfum rece, ideală pentru ceai și limonadă.',t:'Proaspătă azi'},
@@ -22,6 +39,7 @@ const HS=[260,330,230,380,290,340,250,360,280,320,240,370,300,260,350,280,330,24
  
 /* ---------- Generator SVG pentru plante ---------- */
 function art(p,rot=0){
+ const src=p.src||IMG[p.n];if(src)return '<img src="'+src+'" alt="'+p.n+'" class="w-full h-full object-cover" loading="lazy">';
  const {a,b,s}=p; let g='';
  if(s==='leaf'){g='<path d="M100 190V55" stroke="'+a+'" stroke-width="5" stroke-linecap="round"/>';
   for(let i=0;i<6;i++){const y=170-i*22,r=30-i*2;g+=`<ellipse cx="${82-i}" cy="${y}" rx="${r*.8}" ry="${r*.38}" transform="rotate(-30 ${82-i} ${y})" fill="${a}"/><ellipse cx="${118+i}" cy="${y-8}" rx="${r*.8}" ry="${r*.38}" transform="rotate(30 ${118+i} ${y-8})" fill="${a}" opacity=".85"/>`}
@@ -47,13 +65,13 @@ document.getElementById('aboutArt').innerHTML='<div style="border-radius:50%;ove
 const cats=['toate','aromatice','legume','specialități'];let cur='toate';
 const fEl=document.getElementById('filters'),gEl=document.getElementById('grid');
 function renderGrid(){
- gEl.innerHTML=P.filter(p=>cur==='toate'||p.c===cur).map(p=>`<article class="card pc"><div class="ph relative aspect-[4/3]">${art(p)}<span class="absolute left-3 top-3 rounded-full bg-deep px-3 py-1 text-xs font-semibold text-lime">${p.t}</span></div><div class="p-5"><h3 class="text-xl font-bold">${p.n}</h3><p class="mt-1.5 text-mute text-sm">${p.d}</p><button data-buy="${p.n}" class="btn mt-4 !py-2 !px-4 text-sm bg-brand text-white">Detalii / Cumpără</button></div></article>`).join('');
+ gEl.innerHTML=P.filter(p=>cur==='toate'||p.c===cur).map(p=>`<article class="card pc"><div class="ph relative aspect-[4/3]">${art(p)}<span class="absolute left-3 top-3 rounded-full bg-deep px-3 py-1 text-xs font-semibold text-lime">${p.t}</span></div><div class="p-5"><h3 class="text-xl font-bold">${p.n}</h3><p class="mt-1.5 text-mute text-sm">${p.d}</p><p class="mt-3 font-head text-lg font-bold text-brand">${priceTxt(p.n)}</p><div class="mt-auto pt-4 flex flex-wrap gap-2"><button data-buy="${p.n}" class="btn !py-2 !px-4 text-sm bg-brand text-white">Detalii</button><button data-add="${p.n}" class="btn btn-lime !py-2 !px-4 text-sm">+ Adaugă</button></div></div></article>`).join('');
 }
 function renderChips(){fEl.innerHTML=cats.map(c=>`<button class="chip" data-c="${c}" aria-pressed="${c===cur}">${c[0].toUpperCase()+c.slice(1)}</button>`).join('')}
 fEl.onclick=e=>{const c=e.target.closest('[data-c]');if(!c)return;cur=c.dataset.c;renderChips();renderGrid();gEl.scrollLeft=0};
 function buy(n){const m=document.getElementById('m');m.value='Bună! Aș dori să comand: '+n+'. Cantitate: ';document.getElementById('contact').scrollIntoView({behavior:'smooth'});setTimeout(()=>m.focus({preventScroll:true}),600)}
 function dragRow(el,tap){let dn=false,mv=0,sx=0,sl=0;el.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;dn=true;mv=0;sx=e.clientX;sl=el.scrollLeft});addEventListener('pointermove',e=>{if(!dn)return;const d=e.clientX-sx;mv=Math.max(mv,Math.abs(d));if(mv>5)el.classList.add('drag');el.scrollLeft=sl-d});addEventListener('pointerup',()=>{if(!dn)return;dn=false;el.classList.remove('drag');setTimeout(()=>mv=0,0)});el.addEventListener('click',e=>{if(mv>5)return;tap(e)})}
-dragRow(gEl,e=>{const b=e.target.closest('[data-buy]');if(b)openDet(b.dataset.buy)});
+dragRow(gEl,e=>{const a=e.target.closest('[data-add]');if(a){addCart(a.dataset.add);a.textContent='✓ Adăugat';setTimeout(()=>a.textContent='+ Adaugă',1200);return}const b=e.target.closest('[data-buy]');if(b)openDet(b.dataset.buy)});
 const pStep=()=>Math.max(300,gEl.clientWidth*.7);
 document.getElementById('pp').onclick=()=>gEl.scrollBy({left:-pStep(),behavior:'smooth'});
 document.getElementById('pn').onclick=()=>gEl.scrollBy({left:pStep(),behavior:'smooth'});
@@ -79,20 +97,20 @@ const D={
 const det=document.getElementById('det'),dbody=document.getElementById('dbody');let detLast=null;
 function closeDet(){det.classList.add('hidden');document.body.style.overflow='';detLast&&detLast.focus()}
 function openDet(n){const p=P.find(x=>x.n===n),d=D[n];if(!p||!d)return;detLast=document.activeElement;
-dbody.innerHTML=`<div class='grid gap-8 md:grid-cols-2 md:items-start'><div class='rounded-3xl overflow-hidden aspect-square'>${art(p)}</div><div><p class='inline-block rounded-full bg-deep px-3 py-1 text-xs font-semibold text-lime'>${p.t}</p><h2 class='mt-3 text-4xl md:text-5xl font-extrabold'>${p.n}</h2><p class='mt-2 text-mute text-lg'>${p.d}</p><div class='mt-6 flex flex-wrap gap-2' role='tablist'>${['Cum e crescut','Nutrienți','Beneficii'].map((t,i)=>`<button class='chip' role='tab' data-t='${i}'>${t}</button>`).join('')}</div><div id='dtab' class='mt-5 min-h-[190px]' role='tabpanel'></div><button id='dbuy' class='btn btn-lime mt-6'>Comandă ${p.n}</button><p class='mt-5 text-xs text-mute'>Informații generale, nu sfat medical. Nivelurile de nutrienți sunt orientative.</p></div></div>`;
+dbody.innerHTML=`<div class='grid gap-8 md:grid-cols-2 md:items-start'><div class='rounded-3xl overflow-hidden aspect-square'>${art(p)}</div><div><p class='inline-block rounded-full bg-deep px-3 py-1 text-xs font-semibold text-lime'>${p.t}</p><h2 class='mt-3 text-4xl md:text-5xl font-extrabold'>${p.n}</h2><p class='mt-2 text-mute text-lg'>${p.d}</p><p class='mt-2 font-head text-2xl font-bold text-brand'>${priceTxt(p.n)}</p><div class='mt-6 flex flex-wrap gap-2' role='tablist'>${['Cum e crescut','Nutrienți','Beneficii'].map((t,i)=>`<button class='chip' role='tab' data-t='${i}'>${t}</button>`).join('')}</div><div id='dtab' class='mt-5 min-h-[190px]' role='tabpanel'></div><button id='dbuy' class='btn btn-lime mt-6'>Adaugă în comandă</button><p class='mt-5 text-xs text-mute'>Informații generale, nu sfat medical. Nivelurile de nutrienți sunt orientative.</p></div></div>`;
 const tab=document.getElementById('dtab');
 const setTab=i=>{dbody.querySelectorAll('[data-t]').forEach(b=>{const on=+b.dataset.t===i;b.setAttribute('aria-pressed',on);b.setAttribute('aria-selected',on)});
 tab.innerHTML=i===0?`<p class='text-lg leading-relaxed'>${d[0]}</p><p class='mt-3 text-mute'><b class='text-ink'>Cum o folosești:</b> ${d[3]}</p>`:i===1?`<p class='text-mute text-sm mb-3'>Aport orientativ la 100 g, de la scăzut la foarte ridicat.</p>`+d[1].map(([l,v])=>`<div class='mb-3'><div class='flex justify-between text-sm font-semibold'><span>${l}</span><span class='text-mute'>${['','Scăzut','Moderat','Bun','Ridicat','Foarte ridicat'][v]}</span></div><div class='bar mt-1'><i data-w='${v*20}'></i></div></div>`).join(''):`<ul class='space-y-3'>${d[2].map(x=>`<li class='flex gap-3'><svg class='shrink-0 mt-0.5' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='var(--brand)' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12l5 5L20 7'/></svg><span>${x}</span></li>`).join('')}</ul>`;
 tab.querySelectorAll('.bar i').forEach(el=>setTimeout(()=>el.style.width=el.dataset.w+'%',40))};
 dbody.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>setTab(+b.dataset.t));
-document.getElementById('dbuy').onclick=()=>{closeDet();buy(n)};
+document.getElementById('dbuy').onclick=()=>{addCart(n);closeDet();openCart()};
 det.classList.remove('hidden');det.scrollTop=0;document.body.style.overflow='hidden';setTab(0);document.getElementById('dx').focus()}
 document.getElementById('dx').onclick=closeDet;
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!det.classList.contains('hidden')&&lb.classList.contains('hidden'))closeDet()});
 renderChips();renderGrid();
  
 /* ---------- Galerie + Lightbox ---------- */
-const G=SCENES.map((t,i)=>({t,p:P[(i*5)%P.length],rot:(i%5-2)*6,h:HS[i]}));
+const G=FOTO.length?FOTO.map(f=>({t:f.t,p:{n:f.t,src:f.src},rot:0})):SCENES.map((t,i)=>({t,p:P[(i*5)%P.length],rot:(i%5-2)*6,h:HS[i]}));
 document.getElementById('mas').innerHTML=G.map((g,i)=>`<button class="gi" data-i="${i}" style="width:${i%3===1?'min(62vw,270px)':'min(78vw,360px)'}" aria-label="Deschide: ${g.t}">${art(g.p,g.rot)}<span>${g.t}</span></button>`).join('');
 const lb=document.getElementById('lb'),lbi=document.getElementById('lbi'),lbc=document.getElementById('lbc');let li=0,last=null;
 function show(i){li=(i+G.length)%G.length;lbi.innerHTML=art(G[li].p,G[li].rot);lbc.textContent=G[li].t+'  ('+(li+1)+'/'+G.length+')'}
@@ -144,4 +162,24 @@ mob.onclick=e=>{if(e.target.closest('a')){mob.classList.add('hidden');bg.setAttr
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 document.getElementById('yr').textContent=new Date().getFullYear();
+/* ---------- Coș de comandă (trimitere pe WhatsApp sau email) ---------- */
+let cart={};
+const cb=document.getElementById('cb'),cp=document.getElementById('cp'),cov=document.getElementById('cov'),cl=document.getElementById('cl');
+const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const cartTotal=()=>Object.entries(cart).reduce((s,[k,q])=>s+PR[k][0]*q,0);
+function orderMsg(){const nm=document.getElementById('cnm').value.trim(),ad=document.getElementById('cad').value.trim();
+ const lines=Object.entries(cart).filter(([,q])=>q>0).map(([k,q])=>'- '+k+' x'+q+' ('+PR[k][0]*q+' lei)');
+ return 'Bună! Aș dori să comand:\n'+lines.join('\n')+'\nTotal estimat: '+cartTotal()+' lei'+(nm?'\nNume: '+nm:'')+(ad?'\nAdresă livrare: '+ad:'')}
+function renderCart(){const es=Object.entries(cart).filter(([,q])=>q>0),n=cartCount();
+ cb.style.display=n?'':'none';document.getElementById('cn').textContent=n;document.getElementById('ct').textContent=cartTotal()+' lei';
+ cl.innerHTML=es.length?es.map(([k,q])=>`<div class='flex items-center gap-3 py-3 border-b border-line'><div class='w-14 h-14 rounded-xl overflow-hidden shrink-0'>${art(P.find(p=>p.n===k))}</div><div class='flex-1 min-w-0'><p class='font-semibold truncate'>${k}</p><p class='text-sm text-mute'>${priceTxt(k)}</p></div><div class='flex items-center gap-2'><button class='arw !w-8 !h-8 !text-base' data-q='${k}' data-d='-1' aria-label='Mai puțin'>−</button><b>${q}</b><button class='arw !w-8 !h-8 !text-base' data-q='${k}' data-d='1' aria-label='Mai mult'>+</button></div></div>`).join(''):`<p class='py-6 text-mute'>Coșul e gol. Adaugă produse din „Recolta noastră”.</p>`}
+function addCart(n){if(!PR[n])return;cart[n]=(cart[n]||0)+1;renderCart();cb.animate([{transform:'scale(1)'},{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:300})}
+function openCart(){renderCart();cp.inert=false;cp.classList.add('open');cov.classList.remove('hidden');document.getElementById('cx').focus()}
+function closeCart(){cp.classList.remove('open');cp.inert=true;cov.classList.add('hidden')}
+cb.onclick=openCart;cov.onclick=closeCart;document.getElementById('cx').onclick=closeCart;
+cl.onclick=e=>{const b=e.target.closest('[data-q]');if(!b)return;const k=b.dataset.q;cart[k]=Math.max(0,(cart[k]||0)+ +b.dataset.d);renderCart();if(!cartCount())closeCart()};
+document.getElementById('cwa').onclick=()=>{if(cartCount())window.open('https://wa.me/40721481820?text='+encodeURIComponent(orderMsg()),'_blank','noopener')};
+document.getElementById('cem').onclick=e=>{e.preventDefault();if(cartCount())location.href='mailto:mentaolandeza2026@gmail.com?subject='+encodeURIComponent('Comandă nouă')+'&body='+encodeURIComponent(orderMsg())};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&cp.classList.contains('open'))closeCart()});
+ 
  

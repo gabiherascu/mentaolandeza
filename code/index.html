@@ -25,13 +25,13 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
       Mentaolandeza
     </a>
     <nav class="hidden md:flex items-center gap-7 text-sm font-medium" aria-label="Principal">
-      <a class="nl" href="#despre">Despre noi</a><a class="nl" href="#recolta">Recolta</a><a class="nl" href="#galerie">Galerie</a><a class="nl" href="#recenzii">Recenzii</a>
+      <a class="nl" href="#despre">Despre noi</a><a class="nl" href="#recolta">Recolta</a><a class="nl" href="#galerie">Galerie</a><a class="nl" href="#recenzii">Recenzii</a><a class="nl" href="#livrare">Livrare</a>
       <a href="#contact" class="btn btn-lime !py-2 !px-5">Comandă acum</a>
     </nav>
     <button id="burger" class="md:hidden p-2" aria-label="Meniu" aria-expanded="false"><svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h18M4 13h18M4 18h18"/></svg></button>
   </div>
   <div id="mob" class="hidden md:hidden bg-deep text-white px-5 pb-5 flex flex-col gap-4 font-medium">
-    <a href="#despre">Despre noi</a><a href="#recolta">Recolta</a><a href="#galerie">Galerie</a><a href="#recenzii">Recenzii</a><a href="#contact" class="btn btn-lime justify-center">Comandă acum</a>
+    <a href="#despre">Despre noi</a><a href="#recolta">Recolta</a><a href="#galerie">Galerie</a><a href="#recenzii">Recenzii</a><a href="#livrare">Livrare</a><a href="#contact" class="btn btn-lime justify-center">Comandă acum</a>
   </div>
 </header>
 
@@ -93,6 +93,53 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
   <div id="mas" class="mas mt-4" tabindex="0" aria-label="Galerie, derulează lateral"></div>
 </section>
 
+<!-- ============ CALENDAR DE SEZON (modifică după recolta reală) ============ -->
+<section id="sezon" class="mx-auto max-w-7xl px-5 py-24">
+  <div class="rv max-w-2xl"><h2 class="text-4xl md:text-5xl font-extrabold">Ce găsești în fiecare sezon</h2>
+  <p class="mt-4 text-mute text-lg">Recolta se schimbă odată cu anotimpul. Calendarul e orientativ și depinde de vreme.</p></div>
+  <div class="rv mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="card p-6"><span class="inline-block size-3 rounded-full" style="background:#7fd18b"></span><h3 class="mt-3 text-xl font-bold">Primăvara</h3><p class="mt-2 text-mute">Ridichi, usturoi verde, mărar, pătrunjel, spanac.</p></div>
+    <div class="card p-6"><span class="inline-block size-3 rounded-full" style="background:#f1b017"></span><h3 class="mt-3 text-xl font-bold">Vara</h3><p class="mt-2 text-mute">Roșii, castraveți, ardei, busuioc, mentă.</p></div>
+    <div class="card p-6"><span class="inline-block size-3 rounded-full" style="background:#ee8a1c"></span><h3 class="mt-3 text-xl font-bold">Toamna</h3><p class="mt-2 text-mute">Kale, morcovi, ardei, cimbru, rozmarin.</p></div>
+    <div class="card p-6"><span class="inline-block size-3 rounded-full" style="background:#6fb3e0"></span><h3 class="mt-3 text-xl font-bold">Iarna</h3><p class="mt-2 text-mute">Ghivece de aromatice, ceai de plante, cutia săptămânii.</p></div>
+  </div>
+</section>
+
+<!-- ============ LIVRARE (exemple: modifică-le) ============ -->
+<section id="livrare" class="bg-surf border-y border-line">
+  <div class="mx-auto max-w-7xl px-5 py-24">
+    <div class="rv max-w-2xl"><h2 class="text-4xl md:text-5xl font-extrabold">Livrare și ridicare</h2>
+    <p class="mt-4 text-mute text-lg">Comanzi pe WhatsApp sau din coșul de pe site, iar noi culegem și pregătim comanda în ziua livrării.</p></div>
+    <div class="rv mt-10 grid gap-4 md:grid-cols-3">
+      <div class="card p-6"><h3 class="text-xl font-bold">Livrare la adresă</h3><p class="mt-2 text-mute">București și Ilfov, de două ori pe săptămână (de exemplu joi și sâmbătă). Spune-ne adresa când comanzi.</p></div>
+      <div class="card p-6"><h3 class="text-xl font-bold">Ridicare de la fermă</h3><p class="mt-2 text-mute">Strada Odăi nr. 120, Ilfov, zilnic între 07:00 și 19:00. Sună înainte să avem comanda pregătită.</p></div>
+      <div class="card p-6"><h3 class="text-xl font-bold">Comandă minimă</h3><p class="mt-2 text-mute">50 lei pentru livrare (exemplu). Plata se face la primirea comenzii.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REȚETE ============ -->
+<section id="retete" class="mx-auto max-w-7xl px-5 py-24">
+  <div class="rv max-w-2xl"><h2 class="text-4xl md:text-5xl font-extrabold">Rețete cu ce cultivăm</h2>
+  <p class="mt-4 text-mute text-lg">Trei idei simple, gata în mai puțin de o oră.</p></div>
+  <div class="rv mt-10 grid gap-4 md:grid-cols-3">
+    <article class="card p-6"><h3 class="text-xl font-bold">Limonadă cu mentă</h3><p class="mt-2 text-sm text-mute">Mentă, 2 lămâi, apă, miere după gust.</p><p class="mt-3">Zdrobește frunzele de mentă cu mierea. Adaugă sucul de lămâie și apa rece, apoi lasă 10 minute la frigider.</p></article>
+    <article class="card p-6"><h3 class="text-xl font-bold">Cartofi cu rozmarin</h3><p class="mt-2 text-sm text-mute">Cartofi, rozmarin, usturoi, ulei, sare.</p><p class="mt-3">Taie cartofii, amestecă-i cu uleiul, usturoiul și ramurile de rozmarin. Coace-i la 200°C, 40 de minute.</p></article>
+    <article class="card p-6"><h3 class="text-xl font-bold">Salată de roșii cu busuioc</h3><p class="mt-2 text-sm text-mute">Roșii, busuioc, ulei, sare, oțet.</p><p class="mt-3">Taie roșiile, rupe frunzele de busuioc cu mâna și amestecă totul cu ulei și puțin oțet chiar înainte de servit.</p></article>
+  </div>
+</section>
+
+<!-- ============ ÎNTREBĂRI FRECVENTE ============ -->
+<section id="faq" class="mx-auto max-w-3xl px-5 pb-24">
+  <h2 class="rv text-4xl md:text-5xl font-extrabold">Întrebări frecvente</h2>
+  <div class="rv mt-8 space-y-3">
+    <details class="fq"><summary>Cum comand?</summary><p>Adaugă produsele în comandă și trimite-o pe WhatsApp sau pe email. Te contactăm pentru confirmare și detalii de livrare.</p></details>
+    <details class="fq"><summary>Cât se păstrează plantele aromatice?</summary><p>Învelite într-un șervet umed și ținute la frigider, majoritatea ierburilor rezistă câteva zile. Ghiveciurile se țin la lumină și se udă când pământul se usucă la suprafață.</p></details>
+    <details class="fq"><summary>Ce se întâmplă dacă un produs nu e pe stoc?</summary><p>Îți spunem la confirmare și îți propunem un produs asemănător sau scoatem produsul din comandă.</p></details>
+    <details class="fq"><summary>Cum se plătește?</summary><p>La primirea comenzii, numerar sau transfer (exemplu, modifică după cum lucrezi).</p></details>
+  </div>
+</section>
+
 <!-- ============ RECENZII ============ -->
 <section id="recenzii" class="bg-deep text-white py-24">
   <div class="mx-auto max-w-4xl px-5 text-center">
@@ -115,7 +162,7 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
     </ul>
 
     <!-- Hartă: poza harta.jpg + buton Google Maps -->
-    <div class="mt-8 relative rounded-3xl overflow-hidden border border-line" style="height:340px"><img src="images/harta.jpg" alt="Harta: Menta olandeza proaspătă fresh, Strada Odăi" class="absolute inset-0 w-full h-full object-cover" loading="lazy"><a class="absolute inset-0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Menta+olandeza+proasp%C4%83t%C4%83+fresh+Strada+Od%C4%83i+Ilfov" aria-label="Deschide locația în Google Maps"></a><a class="btn btn-lime absolute !py-2 !px-4 text-sm shadow-lg" style="left:.75rem;bottom:.75rem" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Menta+olandeza+proasp%C4%83t%C4%83+fresh+Strada+Od%C4%83i+Ilfov">Deschide în Google Maps</a></div>
+    <div class="mt-8 relative rounded-3xl overflow-hidden border border-line" style="height:340px"><img src="harta.jpg" alt="Harta: Menta olandeza proaspătă fresh, Strada Odăi" class="absolute inset-0 w-full h-full object-cover" loading="lazy"><a class="absolute inset-0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Menta+olandeza+proasp%C4%83t%C4%83+fresh+Strada+Od%C4%83i+Ilfov" aria-label="Deschide locația în Google Maps"></a><a class="btn btn-lime absolute !py-2 !px-4 text-sm shadow-lg" style="left:.75rem;bottom:.75rem" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Menta+olandeza+proasp%C4%83t%C4%83+fresh+Strada+Od%C4%83i+Ilfov">Deschide în Google Maps</a></div>
 
     <div class="mt-6 flex gap-3" id="social"></div>
   </div>
@@ -140,6 +187,25 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
 </footer>
 
 <button id="top" class="fixed right-5 bottom-5 z-40 size-12 rounded-full bg-lime text-deep grid place-items-center shadow-lg opacity-0 pointer-events-none transition" style="bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))" aria-label="Înapoi sus"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+<!-- Buton WhatsApp plutitor -->
+<a id="wa" href="https://wa.me/40721481820?text=Bun%C4%83!%20A%C8%99%20dori%20s%C4%83%20comand." target="_blank" rel="noopener" class="fixed right-5 z-40 size-12 rounded-full grid place-items-center shadow-lg transition hover:-translate-y-1" style="background:#25D366;bottom:calc(5rem + env(safe-area-inset-bottom,0px))" aria-label="Scrie-ne pe WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.9 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/><path d="M9 9.500c.3 2 2.500 4.200 4.500 4.500l1.200-1.200-1.800-1-.7.700c-.8-.4-1.600-1.200-2-2l.7-.7-1-1.800Z"/></svg></a>
+
+<!-- Coș de comandă -->
+<button id="cb" class="fixed left-5 z-40 btn btn-lime shadow-lg" style="display:none;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))">Comanda mea <b id="cn">0</b></button>
+<div id="cov" class="hidden fixed inset-0 z-[65] bg-black/50"></div>
+<aside id="cp" class="fixed inset-y-0 right-0 z-[66] w-[min(94vw,420px)] bg-surf border-l border-line shadow-2xl translate-x-full flex flex-col" aria-label="Comanda mea" inert>
+  <div class="flex items-center justify-between p-5 border-b border-line"><h2 class="text-2xl font-bold">Comanda mea</h2><button id="cx" class="arw !w-10 !h-10" aria-label="Închide">×</button></div>
+  <div id="cl" class="flex-1 overflow-y-auto px-5"></div>
+  <div class="p-5 border-t border-line space-y-3">
+    <div class="flex justify-between text-lg font-bold"><span>Total estimat</span><span id="ct">0 lei</span></div>
+    <input id="cnm" class="fld" placeholder="Numele tău" autocomplete="name">
+    <input id="cad" class="fld" placeholder="Adresa de livrare (opțional)" autocomplete="street-address">
+    <button id="cwa" class="btn btn-lime w-full justify-center">Trimite comanda pe WhatsApp</button>
+    <a id="cem" class="chip block text-center" href="#">Trimite pe email</a>
+    <p class="text-xs text-mute">Prețurile sunt orientative. Confirmăm totalul și disponibilitatea înainte de livrare.</p>
+  </div>
+</aside>
 
 <!-- Detalii produs -->
 <div id="det" class="fixed inset-0 z-[65] hidden overflow-y-auto bg-bg" role="dialog" aria-modal="true" aria-label="Detalii produs" style="padding-top:env(safe-area-inset-top,0px)">
