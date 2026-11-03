@@ -121,12 +121,14 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
 <!-- ============ REȚETE ============ -->
 <section id="retete" class="mx-auto max-w-7xl px-5 py-24">
   <div class="rv max-w-2xl"><h2 class="text-4xl md:text-5xl font-extrabold">Rețete cu ce cultivăm</h2>
-  <p class="mt-4 text-mute text-lg">Trei idei simple, gata în mai puțin de o oră.</p></div>
-  <div class="rv mt-10 grid gap-4 md:grid-cols-3">
-    <article class="card p-6"><h3 class="text-xl font-bold">Limonadă cu mentă</h3><p class="mt-2 text-sm text-mute">Mentă, 2 lămâi, apă, miere după gust.</p><p class="mt-3">Zdrobește frunzele de mentă cu mierea. Adaugă sucul de lămâie și apa rece, apoi lasă 10 minute la frigider.</p></article>
-    <article class="card p-6"><h3 class="text-xl font-bold">Cartofi cu rozmarin</h3><p class="mt-2 text-sm text-mute">Cartofi, rozmarin, usturoi, ulei, sare.</p><p class="mt-3">Taie cartofii, amestecă-i cu uleiul, usturoiul și ramurile de rozmarin. Coace-i la 200°C, 40 de minute.</p></article>
-    <article class="card p-6"><h3 class="text-xl font-bold">Salată de roșii cu busuioc</h3><p class="mt-2 text-sm text-mute">Roșii, busuioc, ulei, sare, oțet.</p><p class="mt-3">Taie roșiile, rupe frunzele de busuioc cu mâna și amestecă totul cu ulei și puțin oțet chiar înainte de servit.</p></article>
+  <p class="mt-4 text-mute text-lg">Apasă pe o rețetă ca să vezi ingredientele, cum se prepară și valorile nutritive.</p></div>
+  <div class="mt-8 flex flex-wrap gap-2" id="rf" role="group" aria-label="Filtrează rețete"></div>
+  <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Sortează rețetele"><span class="text-sm font-semibold text-mute">Sortează:</span><span id="rs" class="flex flex-wrap gap-2"></span></div>
+    <div class="flex gap-2"><button class="arw" id="rp" aria-label="Înapoi">‹</button><button class="arw" id="rn" aria-label="Înainte">›</button></div>
   </div>
+  <div id="rg" class="mas mt-4" tabindex="0" aria-label="Rețete, derulează lateral"></div>
+  <p class="mt-6 text-center text-xs text-mute">Valorile nutritive sunt orientative, pentru o porție.</p>
 </section>
 
 <!-- ============ ÎNTREBĂRI FRECVENTE ============ -->
@@ -160,10 +162,7 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
       <li><b class="text-ink">Email:</b> <a class="underline" href="mailto:mentaolandeza2026@gmail.com">mentaolandeza2026@gmail.com</a></li>
       <li><b class="text-ink">Program:</b> zilnic, 07:00 – 19:00</li>
     </ul>
-
-    <!-- Hartă: poza harta.jpg + buton Google Maps -->
     <div class="mt-8 relative rounded-3xl overflow-hidden border border-line" style="height:340px"><img src="harta.jpg" alt="Harta: Menta olandeza proaspătă fresh, Strada Odăi" class="absolute inset-0 w-full h-full object-cover" loading="lazy"><a class="absolute inset-0" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Menta+olandeza+proasp%C4%83t%C4%83+fresh+Strada+Od%C4%83i+Ilfov" aria-label="Deschide locația în Google Maps"></a><a class="btn btn-lime absolute !py-2 !px-4 text-sm shadow-lg" style="left:.75rem;bottom:.75rem" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Menta+olandeza+proasp%C4%83t%C4%83+fresh+Strada+Od%C4%83i+Ilfov">Deschide în Google Maps</a></div>
-
     <div class="mt-6 flex gap-3" id="social"></div>
   </div>
   <form id="f" class="rv card p-7 space-y-5" novalidate>
@@ -188,10 +187,8 @@ fontFamily:{head:['"Bricolage Grotesque"','system-ui','sans-serif'],body:['Figtr
 
 <button id="top" class="fixed right-5 bottom-5 z-40 size-12 rounded-full bg-lime text-deep grid place-items-center shadow-lg opacity-0 pointer-events-none transition" style="bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))" aria-label="Înapoi sus"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
-<!-- Buton WhatsApp plutitor -->
 <a id="wa" href="https://wa.me/40721481820?text=Bun%C4%83!%20A%C8%99%20dori%20s%C4%83%20comand." target="_blank" rel="noopener" class="fixed right-5 z-40 size-12 rounded-full grid place-items-center shadow-lg transition hover:-translate-y-1" style="background:#25D366;bottom:calc(5rem + env(safe-area-inset-bottom,0px))" aria-label="Scrie-ne pe WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-11.9 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/><path d="M9 9.500c.3 2 2.500 4.200 4.500 4.500l1.200-1.200-1.800-1-.7.700c-.8-.4-1.600-1.200-2-2l.7-.7-1-1.800Z"/></svg></a>
 
-<!-- Coș de comandă -->
 <button id="cb" class="fixed left-5 z-40 btn btn-lime shadow-lg" style="display:none;bottom:calc(1.25rem + env(safe-area-inset-bottom,0px))">Comanda mea <b id="cn">0</b></button>
 <div id="cov" class="hidden fixed inset-0 z-[65] bg-black/50"></div>
 <aside id="cp" class="fixed inset-y-0 right-0 z-[66] w-[min(94vw,420px)] bg-surf border-l border-line shadow-2xl translate-x-full flex flex-col" aria-label="Comanda mea" inert>

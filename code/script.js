@@ -104,7 +104,7 @@ tab.innerHTML=i===0?`<p class='text-lg leading-relaxed'>${d[0]}</p><p class='mt-
 tab.querySelectorAll('.bar i').forEach(el=>setTimeout(()=>el.style.width=el.dataset.w+'%',40))};
 dbody.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>setTab(+b.dataset.t));
 document.getElementById('dbuy').onclick=()=>{addCart(n);closeDet();openCart()};
-det.classList.remove('hidden');det.scrollTop=0;document.body.style.overflow='hidden';setTab(0);document.getElementById('dx').focus()}
+document.getElementById('dx').textContent='‹ Înapoi la recoltă';det.classList.remove('hidden');det.scrollTop=0;document.body.style.overflow='hidden';setTab(0);document.getElementById('dx').focus()}
 document.getElementById('dx').onclick=closeDet;
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!det.classList.contains('hidden')&&lb.classList.contains('hidden'))closeDet()});
 renderChips();renderGrid();
@@ -211,7 +211,7 @@ const REC=[
 ['chipsuri-kale','Chipsuri de kale la cuptor','Sosuri și gustări',20,2,110,4,['Kale'],'1 legătură de kale;1 lingură de ulei;sare','Rupe kale în bucăți și usucă-l bine.|Amestecă-l cu ulei și sare.|Coace la 150°C timp de 12–15 minute, până devine crocant.'],
 ['ridichi-unt-paine','Ridichi cu unt pe pâine','Sosuri și gustări',10,2,190,4,['Ridichi'],'1 legătură de ridichi;4 felii de pâine;2 linguri de unt;sare grunjoasă','Unge pâinea cu unt.|Taie ridichile felii subțiri și aranjează-le deasupra.|Presară puțină sare grunjoasă.']
 ].map(([id,n,c,t,po,k,pr,f,i,st])=>({id,n,c,t,po,k,pr,f,i:i.split(';'),s:st.split('|')}));
-let rcat='toate';
+let rcat='toate',rshown=8;
 const rcats=['toate',...new Set(REC.map(r=>r.c))];
 const rimg=r=>`<img src='img/retete/${r.id}.jpg' alt='${r.n}' class='w-full h-full object-cover' loading='lazy' onerror='rfb(this,"${r.id}")'>`;
 function rfb(el,id){const r=REC.find(x=>x.id===id);el.parentNode.innerHTML=art(P.find(p=>p.n===r.f[0])||P[0])}
@@ -226,5 +226,15 @@ function renderRec(){const L=REC.filter(r=>rcat==='toate'||r.c===rcat).slice();
 function openRec(id){const r=REC.find(x=>x.id===id);if(!r)return;detLast=document.activeElement;
  dbody.innerHTML=`<div class='grid gap-8 md:grid-cols-2 md:items-start'><div class='rounded-3xl overflow-hidden aspect-square'>${rimg(r)}</div><div><p class='text-sm font-semibold text-brand'>${r.c}</p><h2 class='mt-1 text-4xl md:text-5xl font-extrabold'>${r.n}</h2><div class='mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2 text-center'>${[[r.t+' min','Timp'],[r.po,'Porții'],[r.k,'kcal / porție'],[r.pr+' g','Proteine / porție']].map(([v,l])=>`<div class='card p-3'><b class='font-head text-xl text-brand'>${v}</b><p class='text-xs text-mute'>${l}</p></div>`).join('')}</div><h3 class='mt-7 text-xl font-bold'>De ce ai nevoie</h3><ul class='mt-3 space-y-2'>${r.i.map(x=>`<li class='flex gap-2'><span class='text-brand'>•</span><span>${x}</span></li>`).join('')}</ul><h3 class='mt-7 text-xl font-bold'>Cum se prepară</h3><ol class='mt-3 space-y-3'>${r.s.map((x,k)=>`<li class='flex gap-3'><b class='shrink-0 size-7 rounded-full bg-brand text-white grid place-items-center text-sm'>${k+1}</b><span>${x}</span></li>`).join('')}</ol><button id='rbuy' class='btn btn-lime mt-7'>Adaugă din fermă: ${r.f.join(', ')}</button><p class='mt-4 text-xs text-mute'>Valorile nutritive sunt orientative și pot varia după ingrediente.</p></div></div>`;
  document.getElementById('rbuy').onclick=()=>{r.f.forEach(addCart);closeDet();openCart()};
- document.getElementById('dx').textContent='‹ Înapoi la rețete';det.classList.remove('hidden');det.scrollTop=0;document.bo
+ document.getElementById('dx').textContent='‹ Înapoi la rețete';det.classList.remove('hidden');det.scrollTop=0;document.body.style.overflow='hidden';document.getElementById('dx').focus()}
+document.getElementById('rf').onclick=e=>{const b=e.target.closest('[data-rc]');if(!b)return;rcat=b.dataset.rc;renderRChips();renderRec()};
+document.getElementById('rs').onclick=e=>{const b=e.target.closest('[data-rs]');if(!b)return;rsort=b.dataset.rs;renderRSort();renderRec()};
+const rgEl=document.getElementById('rg'),rStep=()=>Math.max(300,rgEl.clientWidth*.7);
+document.getElementById('rp').onclick=()=>rgEl.scrollBy({left:-rStep(),behavior:'smooth'});
+document.getElementById('rn').onclick=()=>rgEl.scrollBy({left:rStep(),behavior:'smooth'});
+rgEl.addEventListener('keydown',e=>{if(e.key==='ArrowRight')rgEl.scrollBy({left:rStep(),behavior:'smooth'});if(e.key==='ArrowLeft')rgEl.scrollBy({left:-rStep(),behavior:'smooth'})});
+dragRow(rgEl,e=>{const b=e.target.closest('[data-r]');if(b)openRec(b.dataset.r)});
+renderRChips();renderRSort();renderRec();
+ 
+ 
  
